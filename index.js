@@ -5,11 +5,15 @@ import morgan from "morgan";
 import "dotenv/config.js";
 import notFoundPath from "./src/middlewares/notFoundPath.mid.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
+import connectToMongo from "./src/utils/mongo.util.js";
 
 const server = express();
 
 const port = process.env.PORT || 8080;
-const ready = () => console.log("server ready on port " + port);
+const ready = () => {
+  console.log("server ready on port " + port);
+  connectToMongo(process.env.MONGO_URI);
+};
 
 server.listen(port, ready);
 
@@ -21,7 +25,6 @@ server.use(express.json());
 server.use(cors());
 server.use(morgan("dev"));
 //manejadores
-
 
 //router
 server.get("/", (req, res, next) => {
