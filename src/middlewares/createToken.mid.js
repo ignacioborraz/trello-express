@@ -4,7 +4,7 @@ async function createToken(req, res, next) {
   try {
     const token = sign(
       { email: req.body.email || req.user.email },
-      process.env.SECRET,
+      process.env.SECRET_JWT,
       { expiresIn: 60 * 60 * 24 }
     );
     req.token = token;
