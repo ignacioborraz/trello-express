@@ -1,8 +1,6 @@
 import { Schema, model } from "mongoose";
 
 const collection = "users";
-//en inglés y representativo del recurso
-//en plural y en minusculas
 
 const schema = new Schema(
   {
@@ -14,7 +12,7 @@ const schema = new Schema(
         "https://static-00.iconduck.com/assets.00/avatar-icon-512x512-gu21ei4u.png",
     },
     age: { type: Number, required: false },
-    city: { type: String },
+    username: { type: String },
   },
   { timestamps: true }
 );
