@@ -1,6 +1,6 @@
 import User from "../dao/mongo/User.model.js";
 
-async function accountExists(req, res, next) {
+async function userExists(req, res, next) {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
@@ -14,4 +14,4 @@ async function accountExists(req, res, next) {
   }
 }
 
-export default accountExists;
+export default userExists;

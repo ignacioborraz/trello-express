@@ -6,6 +6,7 @@ import "dotenv/config.js";
 import notFoundPath from "./src/middlewares/notFoundPath.mid.js";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import connectToMongo from "./src/utils/mongo.util.js";
+import router from "./src/routers/index.router.js";
 
 const server = express();
 
@@ -36,5 +37,6 @@ server.get("/", (req, res, next) => {
     return next(error);
   }
 });
+server.use("/api/v1", router)
 server.use(errorHandler);
 server.use(notFoundPath);
