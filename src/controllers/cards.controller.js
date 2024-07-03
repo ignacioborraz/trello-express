@@ -3,6 +3,7 @@ import Card from "../dao/mongo/Card.model.js";
 const create = async (req, res, next) => {
   try {
     const data = req.body;
+    data.user_id = req.user.id
     const one = await Card.create(data);
     return res.status(201).json({
       message: "CREATED CARD_ID: " + one._id,

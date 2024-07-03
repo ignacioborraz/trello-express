@@ -2,7 +2,10 @@ import Board from "../dao/mongo/Board.model.js";
 
 const create = async (req, res, next) => {
   try {
+    //del body van a venir el nombre y la description del tablero
+    //del middleware de jwt va a venir el id del usuario
     const data = req.body;
+    data.user_id = req.user.id
     const one = await Board.create(data);
     return res.status(201).json({
       message: "CREATED BOARD_ID: " + one._id,
@@ -14,10 +17,11 @@ const create = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    let queries = {};
-    if (req.query.user_id) {
+    let queries = { user_id: req.user.id };
+    //ahora el user_id es parte del requerimiento por el middleware de jwt
+    /* if (req.query.user_id) {
       queries.user_id = req.query.user_id;
-    }
+    } */
     const all = await Board.find(queries)
       .select("-createdAt -updatedAt -__v")
       .populate("user_id", "email")
@@ -37,6 +41,7 @@ const read = async (req, res, next) => {
 
 const readOne = async (req, res, next) => {
   try {
+    //convendria realizar un nuevo middleware para verificar que el tablero es del propietario
     const { id } = req.params;
     //const one = await Board.findById(id)
     const one = await Board.findOne({ _id: id })

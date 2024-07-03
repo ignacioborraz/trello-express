@@ -6,6 +6,7 @@ import {
   updateOne,
   destroyOne,
 } from "../controllers/lists.controller.js";
+
 const router = Router();
 
 router.post("/", create);

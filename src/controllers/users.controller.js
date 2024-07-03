@@ -30,7 +30,7 @@ const login = async (req, res, next) => {
   try {
     return res.status(200).json({
       message: "LOGGED IN",
-      //agregar envío de token
+      token: req.token
     });
   } catch (error) {
     return next(error);
