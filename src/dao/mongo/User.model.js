@@ -13,7 +13,6 @@ const schema = new Schema(
         "https://static-00.iconduck.com/assets.00/avatar-icon-512x512-gu21ei4u.png",
     },
     age: { type: Number, required: false },
-    username: { type: String },
   },
   { timestamps: true }
 );

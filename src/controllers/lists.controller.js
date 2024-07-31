@@ -21,7 +21,7 @@ const read = async (req, res, next) => {
     const all = await List.find(queries)
       .select("-createdAt -updatedAt -__v")
       .populate("board_id", "name")
-      .sort("name");
+      .sort("created_at");
     if (all.length === 0) {
       const error = new Error("LISTS NOT FOUND");
       error.status = 404;
